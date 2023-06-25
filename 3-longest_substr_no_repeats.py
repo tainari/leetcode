@@ -1,18 +1,39 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-		#faster than 16%, less memory than 43%
-        if len(s) <= 1:
+		#implemented editorial solution: sliding window
+		if len(s) <= 1:
             return len(s)
-        m = 0
-        for i in range(len(s)):
-            sub = set()
-            for ch in s[i:]:
-                if ch in sub:
-                    m = max(m,len(sub))
-                    break
-                sub.add(ch)
-            m = max(m,len(sub))
-        return m
+        i = j = 0
+        seen = {}
+        maxlen = 0
+        while j < len(s):
+            ch = s[j]
+            if ch in seen:
+				#move i to be the max of its current value
+				#or one to the right of the index of 
+				#the last appearance of the character
+                i = max(i,seen[ch]+1)
+			#check distance between i and j if it beats current max
+            maxlen = max(maxlen, j - i + 1)
+			#map character's current index in hash
+            seen[ch] = j
+			#move rightmost index one up
+            j += 1
+        return maxlen
+		## Second attempt, still reads too many times
+		# #faster than 16%, less memory than 43%
+  #       if len(s) <= 1:
+  #           return len(s)
+  #       m = 0
+  #       for i in range(len(s)):
+  #           sub = set()
+  #           for ch in s[i:]:
+  #               if ch in sub:
+  #                   m = max(m,len(sub))
+  #                   break
+  #               sub.add(ch)
+  #           m = max(m,len(sub))
+  #       return m
 		##inefficient and times out at test case 986/987
         #if s == "":
         #    return 0
