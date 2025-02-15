@@ -3,7 +3,7 @@ class Node:
         self.value = value
         self.next = None
 
-class Queue:
+class MyQueue:
     def __init__(self, value):
         node = Node(value)
         self.first = node
@@ -42,20 +42,20 @@ class Queue:
         self.length -= 1
         return node
 
-queue = Queue(1)
-queue.enqueue(1)
-queue.enqueue(2)
-queue.enqueue(3)
-queue.print_list()
-queue.dequeue()
-queue.print_list()
-queue.dequeue()
-queue.print_list()
-queue.dequeue()
-queue.print_list()
-queue.dequeue()
-queue.print_list()
-queue.dequeue()
-queue.print_list()
-queue.enqueue(4)
-queue.print_list()
+my_queue = MyQueue(1)
+my_queue.enqueue(1)
+my_queue.enqueue(2)
+my_queue.enqueue(3)
+my_queue.print_list()
+my_queue.dequeue()
+my_queue.print_list()
+my_queue.dequeue()
+my_queue.print_list()
+my_queue.dequeue()
+my_queue.print_list()
+my_queue.dequeue()
+my_queue.print_list()
+my_queue.dequeue()
+my_queue.print_list()
+my_queue.enqueue(4)
+my_queue.print_list()

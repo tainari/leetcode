@@ -34,7 +34,6 @@ class DoublyLinkedList:
         if self.length <= 1:
             return None
         current = self.head
-        prev_node = self.head.prev
         next_node = self.head.next
         while current:
             # currently: _ < A <> B <> C > _
@@ -42,14 +41,12 @@ class DoublyLinkedList:
             # B.prev = A --> becomes B.next = A, B.prev = None
             # etc
             # end up with < C <> B <> A
-            current.next = prev_node
+            next_node = current.next
+            current.next = current.prev
             current.prev = next_node
-            next_node.prev = next_node.next
-            next_node.next = current
             # move to the next node
             prev_node = current
             current = next_node
-            next_node = current.prev
         self.head, self.tail = self.tail, self.head
         return True
     ## WRITE REVERSE METHOD HERE ##
